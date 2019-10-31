@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(3);
+        //一旦启用已延迟的任务就执行它，但是有关何时启用，启用后何时执行则没有任何实时保证。按照提交的先进先出 (FIFO) 顺序来启用那些被安排在同一执行时间的任务。
         //特别是，因为它作为一个使用 corePoolSize 线程和一个无界队列的固定大小的池，所以调整 maximumPoolSize 没有什么效果。
 
         //threadPoolExecutor.setExecuteExistingDelayedTasksAfterShutdownPolicy(true);//shutdown是否影响延迟任务
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         //threadPoolExecutor.submit(getRunnable(10));//返回参数
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             //threadPoolExecutor.schedule(getRunnable(10), 1, TimeUnit.SECONDS);//延迟执行
 
             threadPoolExecutor.scheduleAtFixedRate(getRunnable(i), 1, 10, TimeUnit.SECONDS);//定期执行，开始
@@ -55,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
             2019-10-31 10:43:10.879 12773-12804/com.hua.demo D/hua_demo: running:2; Thread: 12804; Name: pool-1-thread-2
             2019-10-31 10:43:13.880 12773-12805/com.hua.demo D/hua_demo: end:1; Thread: 12805; Name: pool-1-thread-3
             2019-10-31 10:43:13.880 12773-12803/com.hua.demo D/hua_demo: end:0; Thread: 12803; Name: pool-1-thread-1
-            2019-10-31 10:43:13.880 12773-12804/com.hua.demo D/hua_demo: end:2; Thread: 12804; Name: pool-1-thread-2
-            2019-10-31 10:43:20.879 12773-12803/com.hua.demo D/hua_demo: running:0; Thread: 12803; Name: pool-1-thread-1
             2019-10-31 10:43:20.879 12773-12804/com.hua.demo D/hua_demo: running:1; Thread: 12804; Name: pool-1-thread-2
             2019-10-31 10:43:20.879 12773-12805/com.hua.demo D/hua_demo: running:2; Thread: 12805; Name: pool-1-thread-3
             2019-10-31 10:43:23.880 12773-12803/com.hua.demo D/hua_demo: end:0; Thread: 12803; Name: pool-1-thread-1
